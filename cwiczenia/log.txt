@@ -1,0 +1,33 @@
+2026-01-17 11:18:17,412 INFO Wywołano funkcję: `add` z parametrami: pozycyjne: (10, 20), nazwane: {} wynik: 30, czas: 0.00s
+2026-01-17 11:18:17,421 INFO Wywołano funkcję: `bar` z parametrami: pozycyjne: (1000,), nazwane: {} wynik: 5809815567, czas: 0.01s
+2026-01-17 11:18:17,421 ERROR Error in function `bad_function` with args: pozycyjne: (), nazwane: {}. Error: division by zero
+2026-01-17 11:19:07,467 INFO Wywołano funkcję: `add` z parametrami: pozycyjne: (10, 20), nazwane: {} wynik: 30, czas: 0.00s
+2026-01-17 11:19:07,476 INFO Wywołano funkcję: `bar` z parametrami: pozycyjne: (1000,), nazwane: {} wynik: 5809815567, czas: 0.01s
+2026-01-17 11:19:07,476 ERROR Error in function `bad_function` with args: pozycyjne: (), nazwane: {}. Error: division by zero
+Traceback (most recent call last):
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 25, in wrapper
+    result = func(*args, **kwargs)
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 48, in bad_function
+    1 / 0
+    ~~^~~
+ZeroDivisionError: division by zero
+Stack (most recent call last):
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 54, in <module>
+    bad_function()
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 27, in wrapper
+    logger.error(f"Error in function `{func.__name__}` with args: pozycyjne: {args}, nazwane: {kwargs}. Error: {e}", exc_info=True, stack_info=True)
+2026-01-17 11:19:26,734 INFO Wywołano funkcję: `add` z parametrami: pozycyjne: (10, 20), nazwane: {} wynik: 30, czas: 0.00s
+2026-01-17 11:19:26,743 INFO Wywołano funkcję: `bar` z parametrami: pozycyjne: (1000,), nazwane: {} wynik: 5809815567, czas: 0.01s
+2026-01-17 11:19:26,744 ERROR Error in function `bad_function` with args: pozycyjne: (), nazwane: {}. Error: division by zero
+Traceback (most recent call last):
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 25, in wrapper
+    result = func(*args, **kwargs)
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 48, in bad_function
+    1 / 0
+    ~~^~~
+ZeroDivisionError: division by zero
+Stack (most recent call last):
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 54, in <module>
+    bad_function()
+  File "/Users/rkorzen/workspace/szkolenia/21_12_2025_python_2/cwiczenia/cwiczenie_08.py", line 27, in wrapper
+    logger.error(f"Error in function `{func.__name__}` with args: pozycyjne: {args}, nazwane: {kwargs}. Error: {e}", exc_info=True, stack_info=True)
