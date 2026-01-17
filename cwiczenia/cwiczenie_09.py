@@ -151,13 +151,33 @@ class ShopService:
         self.db = db
 
     def print_offert(self):
+        print("Witaj.")
+        print("W ofercie posiadamy:")
         for product in self.db.get_products():
             print(f" - {product.info()}")
 
+    def run(self):
+        self.print_offert()
+        basket = Basket()
+        while True:
+            id = input("Co chcesz kupic (podaj id produktu lub q by zakonczyc)? ")
+            if id == "q":
+                break
+            try:
+                product = self.db.get_product(int(id))
+                quantity = int(input(f"Ilosc: "))
+                basket.add_entry(product, quantity)
+
+            except ValueError:
+                print("Podano nieprawidlowe dane.")
+
+        basket.print_receipt()
 
 def main():
     products = DictDbAdapter(db)
     service = ShopService(products)
-    service.print_offert()
+    service.run()
 
-main()
+
+if __name__ == "__main__":
+    main()
