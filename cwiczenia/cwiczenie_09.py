@@ -41,7 +41,7 @@ Suma:                     47.70 PLN
 
 
 class Product:
-    def __init__(self, id, name, price):
+    def __init__(self, id: int, name: str, price: float):
         self.id = id
         self.name = name
         self.price = price
@@ -54,7 +54,7 @@ class Product:
 
 
 class BasketEntry:
-    def __init__(self, product, quantity):
+    def __init__(self, product: Product, quantity):
         self.product = product
         self.quantity = quantity
 
@@ -62,14 +62,20 @@ class BasketEntry:
         return self.product.price * self.quantity
 
 
-basket = []
+class Basket:
+
+    def __init__(self):
+        self.entries: list[BasketEntry] = []
+
+basket = Basket()
 p = Product(1, "Ogorek", 5.34)
 assert p.info() == 'Id: 1, Produkt: "Ogorek", cena: 5.34'
 be = BasketEntry(p, 2)
-basket.append(be)
+basket.entries.append(be)
+basket.entries.append("xxx")
 
-for entry in basket:
-    print(entry.calculate())
+for entry in basket.entries:
+    print(entry)
 
 
 ### przydatne rzeczy:
@@ -79,3 +85,4 @@ while
 
 
 """
+
