@@ -4,3 +4,11 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello in Django ALX Course")
+
+def hello(request, username=""):
+    if username:
+        text = f"Hello {username}"
+    else:
+        text = "Hello World"
+
+    return HttpResponse(text)
