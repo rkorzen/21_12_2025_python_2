@@ -20,6 +20,16 @@ python manage.py runserver
 
  python manage.py startapp nazwa_aplikacji
 
+## tworzenie migracji
+
+python manage.py makemigrations
+
+## wykonanie migracji
+
+python manage.py migrate
+
+
+
 
 ## cwiczenia:
 
