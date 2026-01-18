@@ -12,3 +12,5 @@ def hello(request, username=""):
         text = "Hello World"
 
     return HttpResponse(text)
+
+
