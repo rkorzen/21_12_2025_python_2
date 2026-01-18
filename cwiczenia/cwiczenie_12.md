@@ -60,7 +60,8 @@ Przed każdym uderzeniem wyliczana jest moc_ataku, która jest losową liczbą z
     >>> tulipan = Przedmiot("Zielony tuplian zniszczenia", 5)
     >>> rufus.daj_przedmiot(tulipan)
 
-    >>> walka(rufus, janusz)
+    >>> walka(rufus, janusz
+)
 
 
 Przykładowa walka:
