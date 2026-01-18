@@ -41,4 +41,19 @@ http://127.0.0.1:8000/matematyka/mul/8/2/ -> 16
 
 plus za wyodrebnienie logiki biznesowej (to co robi kalkulator) do osobnego modulu
 
-(hint: utworz plik services.py w ktorym utworzysz MathService z odpowiednimi metodami)
+(hint: utworz pl ik services.py w ktorym utworzysz MathService z odpowiednimi metodami)
+
+
+### 3. 
+
+Dopisz w aplikacji simplerouting model w ktorym bedziesz logowac uzycie username w widoku hello
+
+class HelloUserNameHistory
+    - username
+    - date_of_use
+    - user
+    - ip_address
+
+Dodaj model do Panel Admina
+Pamietaj by zarejestrowac aplikacje w settings...
+
