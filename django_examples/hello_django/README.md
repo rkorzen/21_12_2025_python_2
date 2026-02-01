@@ -67,3 +67,29 @@ class HelloUserNameHistory
 Dodaj model do Panel Admina
 Pamietaj by zarejestrowac aplikacje w settings...
 
+### cwiczenie - utrwalenie - apka, routing
+
+1. Utworz nowa aplikacje - blog
+
+zalozenie:
+
+lista_postow = [{"id":1, "title": "A", "content": "tresc A"}, {"id": 2, "title": "B", "content": "tresc B"}]
+
+/blog/ -> lista wszystkich wpisow (wyswietl liste)
+
+na poczatek wypisz po prostu te liste:
+
+tutaj szablon:
+
+blog/templates/blog/list.html
+    
+[{"id":1, "title": "A", "content": "tresc A"}, {"id": 2, "title": "B", "content": "tresc B"}]
+
+
+/blog/post/1
+
+blog/templates/blog/post.html
+{"id":1, "title": "A", "content": "tresc A"}
+
+
+
