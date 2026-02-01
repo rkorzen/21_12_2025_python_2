@@ -93,3 +93,25 @@ blog/templates/blog/post.html
 
 
 
+## Zadanie:
+
+Dodaj aplikacje Books - analogiczna do bloga z wpisami
+
+/books/ -> lista wszystkich ksiazek
+/books/1 -> szczegoly ksiazki o id 1
+
+
+Ksiazka ma:
+- id
+- title
+- author
+- content
+- metode - length (powie ile ma znakow)
+
+
+Stworz szablony, routing.
+Dodaj do menu... 
+zadbaj o uzycie {% url 'books:list' %}
+
+dodaj paginacje
+dodaj fabryke, ktora wytworzy zadana ilosc ksiazek z fake data
