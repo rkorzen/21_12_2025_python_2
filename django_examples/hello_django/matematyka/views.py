@@ -20,5 +20,5 @@ def calculate(request, op, a, b):
     return render(
         request,
         "matematyka/result.html",
-        {"result": result}
+        {"r": result}
         )
