@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     "matematyka.apps.MatematykaConfig",
     "simplerouting.apps.SimpleroutingConfig",
+    "blog.apps.BlogConfig",
 ]
 
 if DEBUG:
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'hello_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

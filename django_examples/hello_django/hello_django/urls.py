@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("simplerouting.urls")),
     path("matematyka/", include("matematyka.urls")),
+    path("blog/", include("blog.urls")),
 
 ]
