@@ -157,3 +157,12 @@ class DummyNewsService:
 DummyNewsService(db=[News(), News()])
 
 powyzszym serwisem posluguj sie w widokach
+
+
+### cwiczeniwe - dodaj model News w aplikacji news (pola analogiczne do datclass - ale djangowo)
+
+- id (doda automatycznie)
+- title (max_length=200) VARCHAR(200) CharField(max_length=200)
+- content (nie ma ograniczen) TEXT TextField()
+- is_published (bool) BOOLEAN BooleanField() default=False
+- date_of_publication  (date) DATE DateField(null=True)

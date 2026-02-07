@@ -22,6 +22,7 @@ urlpatterns = [
     path("", include("simplerouting.urls")),
     path("matematyka/", include("matematyka.urls")),
     path("blog/", include("blog.urls")),
-    path("", include("templates_examples.urls"))
+    path("", include("templates_examples.urls")),
+    path("", include("news.urls"))
 
 ]

@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     "simplerouting.apps.SimpleroutingConfig",
     "blog.apps.BlogConfig",
 
-    "templates_examples.apps.TemplatesExamplesConfig"
+    "templates_examples.apps.TemplatesExamplesConfig",
+    "news.apps.NewsConfig",
+    "modele.apps.ModeleConfig",
 ]
 
 if DEBUG:

@@ -20,7 +20,8 @@
             <div class="container-fluid">
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url "blog:list" %}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'news:list' %}">News</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button"
                            data-bs-toggle="dropdown">Dropdown</a>
@@ -30,7 +31,7 @@
                             <li><a class="dropdown-item" href="#">A third link</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/matematyka/">Matematyka</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url "mathematics:list" %}">Matematyka</a></li>
                     <li class="nav-item"><a class="nav-link" href="javascript:void(0)">About</a></li>
                 </ul>
             </div>
