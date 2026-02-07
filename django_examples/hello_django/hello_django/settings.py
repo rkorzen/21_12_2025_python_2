@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xsh8r=z1)b1vypn9byr=7dw%-l(g6q6whf*!i&8tq^h1f96ohs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "false").lower() in ("true", "on", "1")
-
+# DEBUG = os.environ.get("DEBUG", "false").lower() in ("true", "on", "1")
+DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "matematyka.apps.MatematykaConfig",
     "simplerouting.apps.SimpleroutingConfig",
     "blog.apps.BlogConfig",
+
+    "templates_examples.apps.TemplatesExamplesConfig"
 ]
 
 if DEBUG:

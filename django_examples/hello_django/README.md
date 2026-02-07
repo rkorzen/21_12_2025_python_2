@@ -115,3 +115,45 @@ zadbaj o uzycie {% url 'books:list' %}
 
 dodaj paginacje
 dodaj fabryke, ktora wytworzy zadana ilosc ksiazek z fake data
+
+
+### Cwiczenie - szablony
+
+stworz nowa aplikacje - aktualnosci
+
+/aktualnosci/ -> lista wszystkich aktualnosci
+/aktualnosci/1 -> szczegoly aktualnosci o id 1
+
+zasymuluj dane z bazy danych przy pomocy listy obiektow typu News
+
+klasa News:
+- id
+- title
+- content
+- is_published
+- date_of_publication
+
+Stworz szablony, gdzie w estetyczny sposob wyswietlisz prezentowane tresci (mozna w oparciu o bootstrap)
+Dodaj routing i widoki dla tej aplikacji
+
+dane utworz w osobnym module o nazwie services.py
+tam utworz serwis
+
+class DummyNewsService:
+
+    def __init__(self, db):
+        self.db = db
+
+    def get_news(self):
+        return ...
+
+    def get_published_news(self):
+        return ...
+
+    def get_by_id(self, id):
+        return ...
+
+
+DummyNewsService(db=[News(), News()])
+
+powyzszym serwisem posluguj sie w widokach

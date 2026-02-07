@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load my_filters %}
+{% load my_tags %}
+{% block extra_style %}
+
+    <style>
+        .odd {
+            background-color: #eee;
+        }
+
+        .even {
+            background-color: #ddd;
+        }
+    </style>
+
+{% endblock %}
+
+{% block title %}przyklady z django templates{% endblock %}
+
+{% block content %}
+
+
+    <div id="messages">
+        {% for typ, msgs in messages.items %}
+            {% for message in msgs %}
+                <div class="alert alert-{{ typ }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    {{ messages.success }}
+
+    {% include "templates_examples/includes/hello.html" %}
+    {% include "templates_examples/includes/funny.html" %}
+
+
+    {{ text }}<br>
+    {{ text|upper }}<br>
+    {{ liczba_int }}<br>
+    {{ liczba_float }}<br>
+    {{ liczba_float|floatformat:2 }}<br>
+    {{ lista }} <br>
+    {{ lista.0 }} <br>
+    {{ lista.2 }} <br>
+
+    <div>
+        <h3>Imiona:</h3>
+        <ul>
+            {% for imie in imiona %}
+                <li class="{% cycle 'odd' 'even' %}">{{ imie|upper_if_ends_with_a }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for imie in imiona %}
+                <li class="{% cycle 'odd' 'even' %}">{% upper_if_startswith imie 'K' %}</li>
+            {% endfor %}
+        </ul>
+
+        {% if data %}
+            {{ data }}
+        {% else %}
+            <p>Brak danych</p>
+        {% endif %}
+
+    </div>
+
+
+    {{ post }}<br>
+    {{ post.title }}<br>
+    {{ post.content }}<br>
+    {{ post.length }}<br>
+
+    {{ post.present }}
+    {{ post.present|safe }}
+
+{% endblock content %}
+
