@@ -178,3 +178,28 @@ sprobu wybrac:
 - wszystkie
 - opublikowane
 - po id
+
+### cwiczenie - relacja one to many
+
+dodaj TimeStampedModel do news.models i niech Autor i News dzeidzicza po tym 
+(abstract=True)
+
+Dodaj model Autor do aplikacji news
+Autor ma:
+- id
+- first_name
+- last_name
+- birth_date  moze byc null
+- death_date  moze byc null
+
+dodanie relacji do autora do news
+author = models.ForeignKey(Autor, on_delete=models.CASCADE, null=True)  # na poczatek moze byc puste
+dodac related_name="news"
+
+- zrobic migracje
+- w shell dodac dane
+- wyszukac wszystkie newsy danego autora
+
+
+
+
