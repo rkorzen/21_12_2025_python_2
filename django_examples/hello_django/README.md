@@ -166,3 +166,15 @@ powyzszym serwisem posluguj sie w widokach
 - content (nie ma ograniczen) TEXT TextField()
 - is_published (bool) BOOLEAN BooleanField() default=False
 - date_of_publication  (date) DATE DateField(null=True)
+
+- po dodaniu trzeba przygotowac i wykoanczyc migracje
+
+  python manage.py makemigrations
+  python manage.py migrate
+  pyton manage.py shell
+
+utworz news (3)
+sprobu wybrac:
+- wszystkie
+- opublikowane
+- po id
