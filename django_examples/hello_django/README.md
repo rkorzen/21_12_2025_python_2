@@ -201,5 +201,19 @@ dodac related_name="news"
 - wyszukac wszystkie newsy danego autora
 
 
+### relacja M2M
 
+W aplikacji news dodaj model Tag
+Tag ma:
+- id
+- name
+- slug  SlugField - moze byc puste
+
+trzeba dodac relacje m2m do news i autora
+
+utworz migracje
+
+dodaj jakies tagi do news i do autora
+
+poszukaj autora po tagu
 

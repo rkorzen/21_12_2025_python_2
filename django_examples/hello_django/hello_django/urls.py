@@ -24,5 +24,6 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("", include("templates_examples.urls")),
     path("", include("news.urls"))
+    ,path("", include("modele.urls"))
 
 ]
