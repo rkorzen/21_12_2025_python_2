@@ -15,14 +15,16 @@ class News(TimeStampedModel):
     title = models.CharField(max_length=200)
     content = models.TextField()
     is_published = models.BooleanField(default=False)
-    pub_date = models.DateTimeField(null=True)
+    pub_date = models.DateTimeField(verbose_name="Publication date", null=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True, related_name='news')
     tags = models.ManyToManyField('Tag', related_name='news')
 
     def __str__(self):
         author_name = self.author.short_name if self.author else "anonimowy"
-        return f"{self.title} ({author_name} - {self.pub_date.strftime('%Y-%m-%d %H:%M:%S')})"
+        return f"{self.title} ({author_name} - {self.pub_date.strftime('%Y-%m-%d %H:%M:%S') if self.pub_date else ''})"
 
+    class Meta:
+        verbose_name_plural = "News"
 
 class Author(TimeStampedModel):
     first_name = models.CharField(max_length=100)
