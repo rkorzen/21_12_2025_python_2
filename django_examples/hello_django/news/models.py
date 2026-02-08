@@ -15,7 +15,7 @@ class News(TimeStampedModel):
     title = models.CharField(max_length=200)
     content = models.TextField()
     is_published = models.BooleanField(default=False)
-    pub_date = models.DateTimeField(verbose_name="Publication date", null=True)
+    pub_date = models.DateTimeField(verbose_name="Publication date", null=True, blank=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True, related_name='news')
     tags = models.ManyToManyField('Tag', related_name='news', blank=True)
 
@@ -29,8 +29,8 @@ class News(TimeStampedModel):
 class Author(TimeStampedModel):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    birth_date = models.DateField(null=True)
-    death_date = models.DateField(null=True)
+    birth_date = models.DateField(null=True, blank=True)
+    death_date = models.DateField(null=True, blank=True)
     tags = models.ManyToManyField('Tag', related_name='authors',  blank=True)
 
     @property

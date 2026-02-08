@@ -234,3 +234,8 @@ poszukaj autora po tagu
 
     form.errors
     form.save()
+
+
+## utworz sciezke, widok do tworzenia autora
+
+/news/authors/add - chcemy tu miec formularz do dodana autora. 
