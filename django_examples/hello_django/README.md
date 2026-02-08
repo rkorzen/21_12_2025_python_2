@@ -217,3 +217,4 @@ dodaj jakies tagi do news i do autora
 
 poszukaj autora po tagu
 
+### PA - dodja modele news, author i tag do PA

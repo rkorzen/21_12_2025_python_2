@@ -12,7 +12,7 @@ class TimeStampedModel(models.Model):
 class Person(TimeStampedModel):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    birth_date = models.DateField(null=True)
+    birth_date = models.DateField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
     @property
@@ -25,10 +25,10 @@ class Instructor(Person):
         ('full', 'Full-time'),
         ('part', 'Part-time')
     )
-    hire_date = models.DateField(null=True)
-    bio = models.TextField(null=True)
-    salary = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    contract_type = models.CharField(choices=CONTRTACT_TYPE_CHOICES, max_length=5, null=True)
+    hire_date = models.DateField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    contract_type = models.CharField(choices=CONTRTACT_TYPE_CHOICES, max_length=5, null=True, blank=True)
 
 
 class Department(TimeStampedModel):
@@ -49,13 +49,14 @@ class Student(Person):
     def __str__(self):
         return f"{self.first_name} {self.last_name})"
 
+
 class Enrollment(TimeStampedModel):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey("Course", on_delete=models.CASCADE)
     grade = models.DecimalField(max_digits=3, decimal_places=2, null=True)
 
-class Course(TimeStampedModel):
 
+class Course(TimeStampedModel):
     class Level(models.TextChoices):
         BEGINNER = 'BEG', 'Beginner'
         INTERMEDIATE = 'INT', 'Intermediate'

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -40,17 +40,17 @@ class Author(TimeStampedModel):
         return f"{self.first_name} {self.last_name}"
 
 
-import unicodedata
-
-
-def slugify(text: str) -> str:
-    text = text.lower().replace("ł", "l").replace(" ", "-")
-    return (
-        unicodedata
-        .normalize('NFKD', text)
-        .encode('ascii', 'ignore')
-        .decode('ascii')
-    )
+# import unicodedata
+#
+#
+# def slugify(text: str) -> str:
+#     text = text.lower().replace("ł", "l").replace(" ", "-")
+#     return (
+#         unicodedata
+#         .normalize('NFKD', text)
+#         .encode('ascii', 'ignore')
+#         .decode('ascii')
+#     )
 
 
 class Tag(models.Model):
@@ -58,6 +58,9 @@ class Tag(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        if self.slug is None:
-            self.slug = slugify(self.name)
+        if not self.slug:
+            self.slug = slugify(self.name.lower().replace("ł", "l"))
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
