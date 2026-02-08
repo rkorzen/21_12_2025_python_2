@@ -17,7 +17,7 @@ class News(TimeStampedModel):
     is_published = models.BooleanField(default=False)
     pub_date = models.DateTimeField(verbose_name="Publication date", null=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, null=True, related_name='news')
-    tags = models.ManyToManyField('Tag', related_name='news')
+    tags = models.ManyToManyField('Tag', related_name='news', blank=True)
 
     def __str__(self):
         author_name = self.author.short_name if self.author else "anonimowy"
@@ -31,7 +31,7 @@ class Author(TimeStampedModel):
     last_name = models.CharField(max_length=100)
     birth_date = models.DateField(null=True)
     death_date = models.DateField(null=True)
-    tags = models.ManyToManyField('Tag', related_name='authors')
+    tags = models.ManyToManyField('Tag', related_name='authors',  blank=True)
 
     @property
     def short_name(self):
@@ -40,20 +40,6 @@ class Author(TimeStampedModel):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-
-
-# import unicodedata
-#
-#
-# def slugify(text: str) -> str:
-#     text = text.lower().replace("ł", "l").replace(" ", "-")
-#     return (
-#         unicodedata
-#         .normalize('NFKD', text)
-#         .encode('ascii', 'ignore')
-#         .decode('ascii')
-#     )
-
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
@@ -66,3 +52,23 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class AuthorNewsStats(models.Model):
+    author = models.OneToOneField(
+        Author, on_delete=models.DO_NOTHING,
+        primary_key=True,
+        db_column='author_id',
+        related_name='stats'
+    )
+    is_alive = models.BooleanField()
+    news_count = models.IntegerField()
+    published_news_count = models.IntegerField()
+    last_pub_date = models.DateTimeField()
+
+    author_tags = models.TextField()
+    news_tags = models.TextField()
+
+    class Meta:
+        managed = False
+        db_table = "author_news_stats"

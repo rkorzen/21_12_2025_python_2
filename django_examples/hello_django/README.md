@@ -220,3 +220,17 @@ poszukaj autora po tagu
 ### PA - dodja modele news, author i tag do PA
 
 ## Dodaj dla Author w PA kolumne z licznikiem news tego autora
+
+## Dodaj formularze w aplikacji news. Dla modelu Author i News - utworz instancje autora w shell przy pomocy formularza
+   Zadbaj by imie, nazwisko zawsze zaczynalo sie wielka litera. Tak samo tytul newsa.
+    
+    data = {...}
+
+    form = Form(data=data)
+
+    form.is_valid():
+
+    jesli sa bledy, czyli to co wyzej zwroci False
+
+    form.errors
+    form.save()
