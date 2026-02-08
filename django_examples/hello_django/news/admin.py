@@ -23,6 +23,7 @@ class TagAdmin(admin.ModelAdmin):
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ["first_name", "last_name", "birth_date", "is_live", "news_count"]
     inlines = [NewsInline]
+    readonly_fields = ('created_by',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

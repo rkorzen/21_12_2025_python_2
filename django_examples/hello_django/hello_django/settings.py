@@ -40,13 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+    'crispy_bootstrap5',
+
     "matematyka.apps.MatematykaConfig",
     "simplerouting.apps.SimpleroutingConfig",
     "blog.apps.BlogConfig",
-
     "templates_examples.apps.TemplatesExamplesConfig",
     "news.apps.NewsConfig",
     "modele.apps.ModeleConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 if DEBUG:
@@ -128,3 +131,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -6,6 +6,7 @@ from django.utils.text import slugify
 class TimeStampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey("auth.User", on_delete=models.DO_NOTHING)
 
     class Meta:
         abstract = True

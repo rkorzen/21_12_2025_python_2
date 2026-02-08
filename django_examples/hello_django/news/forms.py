@@ -5,7 +5,7 @@ class AuthorForm(forms.ModelForm):
 
     class Meta:
         model = Author
-        exclude = ('tags',)
+        exclude = ('tags','created_by')
 
 class NewsForm(forms.ModelForm):
 

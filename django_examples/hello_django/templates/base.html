@@ -32,10 +32,30 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="javascript:void(0)">About</a></li>
+                    <li class="nav-item ali"><a class="nav-link" href="javascript:void(0)">XXX</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        {% include 'includes/user_info.html' %}
+                    </li>
                 </ul>
             </div>
         </nav>
     </header>
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
 
     {% block content %}
 
