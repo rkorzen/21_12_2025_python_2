@@ -1,0 +1,11 @@
+[project]
+name = "cerber"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "crispy-bootstrap5>=2025.6",
+    "django>=5.2.11",
+    "django-crispy-forms>=2.5",
+]
