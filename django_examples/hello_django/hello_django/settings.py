@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-xsh8r=z1)b1vypn9byr=7dw%-l(g6q6whf*!i&8tq^h1f96ohs
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get("DEBUG", "false").lower() in ("true", "on", "1")
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
@@ -63,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "accounts.middleware.DebugRequestLogMiddleware",
 ]
 
 ROOT_URLCONF = 'hello_django.urls'
