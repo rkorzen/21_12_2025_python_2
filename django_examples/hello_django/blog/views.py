@@ -1,5 +1,5 @@
 import logging
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render
 from .services import blog
 from .models import Post
@@ -29,3 +29,8 @@ def post_details(request, id):
     post = blog.get_post(id)
 
     return render(request, "blog/details.html", {"post": post})
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = "blog/details.html"
+    pk_url_kwarg = "id"
