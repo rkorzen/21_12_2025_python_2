@@ -272,6 +272,6 @@ Stronicowanie powinno dzialac itd?
 ## Dopisz test do blog models - dla metody get_snippet()
 Sprawdz przy pomocy coverage pokrycie testami i dopisz brakujace testy w odpowiednich aplikacjach
 
-
+pip install pytest pytest-cov pytest-django
 pytest --cov 
 coverage report html
