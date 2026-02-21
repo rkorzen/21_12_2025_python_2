@@ -8,10 +8,6 @@ class Post(models.Model):
     def length(self):
         return len(self.content)
 
-    @classmethod
-    def fake(cls, id):
-        return ...
-
     def get_snippet(self):
         return self.content[:100] + "..."
 
