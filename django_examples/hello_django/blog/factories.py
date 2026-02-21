@@ -9,3 +9,4 @@ class PostFactory(factory.django.DjangoModelFactory):
 
     title = factory.Faker('sentence')
     content = factory.Faker('paragraph')
+    is_published = factory.Faker('boolean')

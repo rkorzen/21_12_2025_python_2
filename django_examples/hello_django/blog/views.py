@@ -1,7 +1,8 @@
 import logging
-
+from django.views.generic import ListView
 from django.shortcuts import render
 from .services import blog
+from .models import Post
 # Create your views here.
 from django.core.paginator import Paginator
 
@@ -16,6 +17,13 @@ def post_list(request):
 
     return render(request, "blog/list.html", {"page_obj": page_obj})
 
+class PostListView(ListView):
+    model = Post
+    template_name = "blog/list.html"
+    paginate_by = 9
+
+    def get_queryset(self):
+        return self.model.objects.filter(is_published=True)
 
 def post_details(request, id):
     post = blog.get_post(id)

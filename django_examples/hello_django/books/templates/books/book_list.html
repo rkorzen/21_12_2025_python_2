@@ -2,7 +2,6 @@
 {% block content %}
     <h1>Lista ksiażek</h1>
     {% for book in book_list %}
-    <h2>{{ book.title }}</h2>
+        <h2><a href="{% url 'books:details' book.id %}">{{ book.title }}</a></h2>
     {% endfor %}
-
 {% endblock content %}
