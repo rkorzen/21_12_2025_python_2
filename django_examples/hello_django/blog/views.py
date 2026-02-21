@@ -1,7 +1,7 @@
 import logging
 
 from django.shortcuts import render
-from .models import blog
+from .services import blog
 # Create your views here.
 from django.core.paginator import Paginator
 
