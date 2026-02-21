@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "news.apps.NewsConfig",
     "modele.apps.ModeleConfig",
     "accounts.apps.AccountsConfig",
+    "books.apps.BooksConfig",
 ]
 
 if DEBUG:

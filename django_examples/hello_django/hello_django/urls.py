@@ -24,7 +24,8 @@ urlpatterns = [
     path("matematyka/", include("matematyka.urls")),
     path("blog/", include("blog.urls")),
     path("", include("templates_examples.urls")),
-    path("", include("news.urls"))
-    ,path("", include("modele.urls"))
+    path("", include("news.urls")),
+    path("", include("modele.urls")),
+    path("books/", include("books.urls")),
 
 ]

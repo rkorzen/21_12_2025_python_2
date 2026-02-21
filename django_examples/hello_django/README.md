@@ -275,3 +275,8 @@ Sprawdz przy pomocy coverage pokrycie testami i dopisz brakujace testy w odpowie
 pip install pytest pytest-cov pytest-django
 pytest --cov 
 coverage report html
+
+## Zastap widok funkcyjny widokiem klasowym w przypadku listy postow
+
+template_name = "blog/list.html"
+context_object_name = "posts"

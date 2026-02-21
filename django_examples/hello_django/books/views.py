@@ -1,3 +1,5 @@
-from django.shortcuts import render
-from services import book_service
-# Create your views here.
+from django.views.generic import ListView
+from .models import Book
+
+class BookListView(ListView):
+    model = Book
