@@ -267,3 +267,11 @@ zarejestruj w panelu admina
 i sprawdz czy dziala - lista postow, szczegoly posta.
 
 Stronicowanie powinno dzialac itd?
+
+
+## Dopisz test do blog models - dla metody get_snippet()
+Sprawdz przy pomocy coverage pokrycie testami i dopisz brakujace testy w odpowiednich aplikacjach
+
+
+pytest --cov 
+coverage report html
