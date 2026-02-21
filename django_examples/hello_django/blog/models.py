@@ -36,6 +36,9 @@ class Blog:
             id = self.posts[-1].id + 1 if self.posts else 1
             self.posts.append(Post.fake(id))
 
+    def count_posts(self):
+        return len(self.posts)
+
 blog = Blog()
 blog.posts.append(Post(1, "Hello World", "This is my first blog post!"))
 blog.posts.append(Post(2, "Hello Django", "This is my second blog post!"))

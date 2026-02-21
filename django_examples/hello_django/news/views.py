@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib import messages
@@ -5,9 +7,11 @@ from django.contrib import messages
 from .forms import AuthorForm
 from .services import service
 
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def news_list(request):
+    logger.info('Loguje wywoalnie widoku news_list')
     return render(request, 'news/list.html', {'news': service.get_news()})
 
 

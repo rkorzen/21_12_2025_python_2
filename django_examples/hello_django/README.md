@@ -245,3 +245,14 @@ poszukaj autora po tagu
 
 Utworz middleware, ktory mierzy i wypisuje czas wykonana reuest/response w logu
 opcjonalnie dodaj tez taki header do response
+
+
+## Context processors:
+
+dodaj context processor z metrykami:
+ilosc_autorow
+ilosc_newsow
+ilosc postow
+
+
+uzyj go w szablonie base w stopce
