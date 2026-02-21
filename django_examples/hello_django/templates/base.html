@@ -1,72 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    {% block extra_style %}{% endblock %}
-
-</head>
-<body>
-
-<div class="container">
-    <header>
-
-        <h1>ALX</h1>
-
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
-            <div class="container-fluid">
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url "blog:list" %}">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'news:list' %}">News</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                           data-bs-toggle="dropdown">Dropdown</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Link</a></li>
-                            <li><a class="dropdown-item" href="#">Another link</a></li>
-                            <li><a class="dropdown-item" href="#">A third link</a></li>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+              rel="stylesheet">
+        {% block extra_style %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>ALX</h1>
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <div class="container-fluid">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "blog:list" %}">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'news:list' %}">News</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">Dropdown</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">Link</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Another link</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">A third link</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)">About</a>
+                            </li>
+                            <li class="nav-item ali">
+                                <a class="nav-link" href="javascript:void(0)">XXX</a>
+                            </li>
                         </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="javascript:void(0)">About</a></li>
-                    <li class="nav-item ali"><a class="nav-link" href="javascript:void(0)">XXX</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        {% include 'includes/user_info.html' %}
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    {% if messages %}
-        <div class="container mt-3">
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close"></button>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">{% include 'includes/user_info.html' %}</li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if messages %}
+                <div class="container mt-3">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                             role="alert">
+                            {{ message }}
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            {% endif %}
+            {% block content %}
+            {% endblock content %}
+            <footer>
+                <div>Redakcja to: {{ redakcja }}</div>
+                <div>
+                    <ul>
+                        <li>Postów: {{ posts_count }}</li>
+                        <li>Newsów: {{ news_count }}</li>
+                        <li>Autorów: {{ authors_count }}</li>
+                    </ul>
+                </div>
+            </footer>
         </div>
-    {% endif %}
-
-
-    {% block content %}
-
-    {% endblock %}
-
-</div>
-
-<footer>
-    Redakcja to: {{ redakcja }}
-
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

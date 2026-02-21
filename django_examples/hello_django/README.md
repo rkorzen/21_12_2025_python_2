@@ -256,3 +256,14 @@ ilosc postow
 
 
 uzyj go w szablonie base w stopce
+
+## W aplikacji Blog przechodzimy na modele Django.
+
+utworz modele odpowiadajace temu co mielismy wczesniej ale w Django.
+utworz fabryke
+stworz 500 postow
+popraw context processor
+zarejestruj w panelu admina
+i sprawdz czy dziala - lista postow, szczegoly posta.
+
+Stronicowanie powinno dzialac itd?

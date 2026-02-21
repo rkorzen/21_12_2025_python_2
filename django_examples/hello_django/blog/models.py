@@ -39,10 +39,22 @@ class Blog:
     def count_posts(self):
         return len(self.posts)
 
-blog = Blog()
-blog.posts.append(Post(1, "Hello World", "This is my first blog post!"))
-blog.posts.append(Post(2, "Hello Django", "This is my second blog post!"))
-blog.generate_n_fake_posts(500)
+class DjangoBlog:
+    def __init__(self):
+        ...
+
+    def get_post(self, id: int) -> Post:
+        ...
+
+    def generate_n_fake_posts(self, n: int) -> list[Post]:
+        ...
+
+    def count_posts(self):
+        ...
+
+
+blog = DjangoBlog()
+# blog.generate_n_fake_posts(500) # zrob to z reki 1 raz i zakomentuj
 
 
 
