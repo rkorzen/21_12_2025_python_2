@@ -239,3 +239,9 @@ poszukaj autora po tagu
 ## utworz sciezke, widok do tworzenia autora
 
 /news/authors/add - chcemy tu miec formularz do dodana autora. 
+
+
+## Zadanie middleware:
+
+Utworz middleware, ktory mierzy i wypisuje czas wykonana reuest/response w logu
+opcjonalnie dodaj tez taki header do response
