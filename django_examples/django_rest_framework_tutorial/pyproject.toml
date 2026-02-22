@@ -8,6 +8,7 @@ dependencies = [
     "django>=6.0.1",
     "djangorestframework>=3.16.1",
     "djangorestframework-stubs>=3.16.8",
+    "drf-spectacular>=0.29.0",
     "ipython>=9.9.0",
     "pygments>=2.19.2",
 ]
