@@ -13,6 +13,23 @@ POST http://127.0.0.1:8000/api/snippets/
     "language": "java"
 }
 
+###
+
+GET http://127.0.0.1:8000/api/snippets/1
+
+
+###
+
+PUT http://127.0.0.1:8000/api/snippets/1/
+
+{
+    "code": "y=1",
+    "linenos": true
+}
+
+###
+
+DELETE http://127.0.0.1:8000/api/snippets/1/
 
 ### Books
 
