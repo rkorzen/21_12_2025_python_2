@@ -358,6 +358,7 @@ source = { virtual = "django_examples/django_rest_framework_tutorial" }
 dependencies = [
     { name = "django" },
     { name = "djangorestframework" },
+    { name = "ipython" },
     { name = "pygments" },
 ]
 
@@ -365,6 +366,7 @@ dependencies = [
 requires-dist = [
     { name = "django", specifier = ">=6.0.1" },
     { name = "djangorestframework", specifier = ">=3.16.1" },
+    { name = "ipython", specifier = ">=9.9.0" },
     { name = "pygments", specifier = ">=2.19.2" },
 ]
 
