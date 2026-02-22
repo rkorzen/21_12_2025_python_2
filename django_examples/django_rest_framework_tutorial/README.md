@@ -14,3 +14,5 @@ created: datetime (auto_now_add=True)
 po stworzeniu w shell utworz:
 
 utworz ksiazke, zserializuj ksiazke, utworz ksiazke przy pomocy serializera, zserializuj wszystkie ksiazki...
+
+## Stworz widok listy ksiazek (tylko GET)
