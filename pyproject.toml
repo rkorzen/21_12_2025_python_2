@@ -15,4 +15,5 @@ dependencies = [
 
 [tool.uv.workspace]
 members = [
+    "django_examples/django_rest_framework_tutorial",
 ]
