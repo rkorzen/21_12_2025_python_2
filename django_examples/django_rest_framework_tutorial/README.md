@@ -27,3 +27,9 @@ http POST http://127.0.0.1:8000/api/books/ title="Krzyzacy" author="Henryl Sienk
 
 
 ## Dodaj widok szczegolowy ksiazki (GET, PUT, DELETE)
+
+## 
+Wylacz punkt wejscia do API do osobnej aplikacji
+Zaktualizuj URLS.
+Dodaj do entry point link do books
+Zrealizuj HATEOAS (Hypermedia as the Engine of Application State) w aplikacji books
