@@ -1,0 +1,29 @@
+
+### Snippets
+
+GET http://127.0.0.1:8000/api/snippets/
+
+###
+
+POST http://127.0.0.1:8000/api/snippets/
+
+{
+    "title": "ABC",
+    "code": "1 + 1 == 3",
+    "language": "java"
+}
+
+
+### Books
+
+GET http://127.0.0.1:8000/api/books/
+
+
+###
+
+POST http://127.0.0.1:8000/api/books/
+
+{
+    "title": "ABC",
+    "author": "Xyz"
+}

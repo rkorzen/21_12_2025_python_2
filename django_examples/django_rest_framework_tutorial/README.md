@@ -19,7 +19,7 @@ utworz ksiazke, zserializuj ksiazke, utworz ksiazke przy pomocy serializera, zse
 
 ## Obsluz tworzenie ksiazki przez API
 
-pomoconiczo:
+pomocniczo:
 
 $ pip install httpie
 
