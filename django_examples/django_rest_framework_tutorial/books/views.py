@@ -1,59 +1,52 @@
-from django.http import JsonResponse, HttpResponseNotAllowed, HttpResponse
-from django.template.context_processors import csrf
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
+from django.http import HttpResponse
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 
 from books.models import Book
 from .serializers import BookSerializer
 
 # Create your views here.
 
-@csrf_exempt
+@api_view(["GET", "POST"])
 def book_list(request):
-    ALLOWED_METHODS = ["GET", "POST"]
-
-    if request.method not in ALLOWED_METHODS:
-        return HttpResponseNotAllowed(ALLOWED_METHODS)
 
     if request.method == "GET":
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
 
     if request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = BookSerializer(data=data)
+
+        serializer = BookSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
-@csrf_exempt
+@api_view(["GET", "PUT", "DELETE"])
 def book_detail(request, pk):
-    ALLOWED_METHODS = ["GET", "PUT", "DELETE"]
-
-    if request.method not in ALLOWED_METHODS:
-        return HttpResponseNotAllowed(ALLOWED_METHODS)
 
     try:
         snippet = Book.objects.get(pk=pk)
     except Book.DoesNotExist:
-        return HttpResponse(status=404)
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
         serializer = BookSerializer(snippet)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     if request.method == "PUT":
-        data = JSONParser().parse(request)
-        serializer = BookSerializer(snippet, data=data)
+
+        serializer = BookSerializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     if request.method == "DELETE":
         snippet.delete()
-        return HttpResponse(status=204)
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
