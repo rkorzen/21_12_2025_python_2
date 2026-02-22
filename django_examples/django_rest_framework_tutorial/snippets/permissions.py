@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class IsAuthenticatedOrReadOnly(permissions.BasePermission):
+class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     The request is authenticated as a user, or is a read-only request.
     """

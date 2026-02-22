@@ -33,3 +33,6 @@ Wylacz punkt wejscia do API do osobnej aplikacji
 Zaktualizuj URLS.
 Dodaj do entry point link do books
 Zrealizuj HATEOAS (Hypermedia as the Engine of Application State) w aplikacji books
+
+
+## przejdz na viewsets w books
