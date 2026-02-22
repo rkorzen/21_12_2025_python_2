@@ -36,6 +36,7 @@ class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SnippetSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsAuthenticatedOrReadOnly]
 
+
 class SnippetHighlight(generics.GenericAPIView):
     queryset = Snippet.objects.all()
     renderer_classes = [renderers.StaticHTMLRenderer]
@@ -49,17 +50,8 @@ class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
-
-class APIRoot(APIView):
-
-    def get(self, request):
-        data = {
-            "users": reverse("user-list", request=request),
-            "snippets": reverse("snippet-list", request=request)
-        }
-        return Response(data)

@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from books.models import Book
 
-class BookSerializer(serializers.ModelSerializer):
 
+class BookSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Book
         fields = (
-            'id', 'title', 'author', 'status', 'visible', 'created'  # __all__
+            'url', 'id', 'title', 'author', 'status', 'visible', 'created'  # __all__
         )
