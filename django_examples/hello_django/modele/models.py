@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 class TimeStampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,6 +56,22 @@ class Enrollment(TimeStampedModel):
     grade = models.DecimalField(max_digits=3, decimal_places=2, null=True)
 
 
+class CourseQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(is_published=True, department__is_active=True)
+
+    def upcoming(self):
+        today = timezone.now().date()
+        return self.filter(start_date__gte=today)
+
+    def with_department(self):
+        return self.select_related("department")
+
+class CourseManager(models.Manager.from_queryset(CourseQuerySet)):
+    pass
+
+CourseQuerySet.as_manager()
+
 class Course(TimeStampedModel):
     class Level(models.TextChoices):
         BEGINNER = 'BEG', 'Beginner'
@@ -75,5 +91,24 @@ class Course(TimeStampedModel):
 
     students = models.ManyToManyField(Student, through='Enrollment', related_name="courses")
 
+    custom_manager = CourseManager()
+    objects = CourseQuerySet.as_manager()
+
     def __str__(self):
         return f"{self.title} ({self.department.name} - {self.get_level_display()}) - {self.start_date})"
+
+    # class Meta:
+    #     indexes = [
+    #         models.Index(fields=['start_date'], name='start_date_index'),
+    #         models.Index(fields=['end_date'], name='end_date_index'),
+    #     ]
+    #
+    #     constraints = [
+    #         models.UniqueConstraint(
+    #             fields=['department', 'start_date'],
+    #         ),
+    #         models.CheckConstraint(
+    #             condition=models.Q(start_date__lte=timezone.now()),
+    #         )
+    #     ]
+    #

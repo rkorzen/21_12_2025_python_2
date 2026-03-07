@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-xsh8r=z1)b1vypn9byr=7dw%-l(g6q6whf*!i&8tq^h1f96ohs
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get("DEBUG", "false").lower() in ("true", "on", "1")
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
@@ -185,3 +185,5 @@ LOGGING = {
 
     "root": {"handlers": ["console"], "level": "INFO"},
 }
+
+SHELL_PLUS_PRINT_SQL = True
