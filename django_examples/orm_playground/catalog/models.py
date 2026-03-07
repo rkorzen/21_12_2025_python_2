@@ -1,7 +1,9 @@
 from decimal import Decimal
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, OuterRef, Subquery, Value
 from django.core.validators import MinValueValidator
+from django.db.models.functions import Coalesce
+
 # Create your models here.
 from core.models import TimeStampedModel
 
@@ -42,7 +44,19 @@ class ProductQuerySet(models.QuerySet):
         return self.filter(is_active=True)
 
     def with_latest_inventory_qty(self):
-        raise NotImplementedError()
+        """Adnotuje produkt najnowsza znana iloscia dostepna w magazynie"""
+        latest_snapshot = (
+            InventorySnapshot.objects.filter(sku=OuterRef("sku"))
+            .order_by("-captured_at")
+            .values('available_qty')[:1]
+        )
+
+        return self.annotate(
+            latest_inventory_qty=Coalesce(
+                Subquery(latest_snapshot),
+                Value(0)
+            )
+        )
 
 
 class Product(TimeStampedModel):

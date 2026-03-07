@@ -1,4 +1,9 @@
+from decimal import Decimal
+
 from django.db import models
+from django.db.models import OuterRef, Sum, F, Subquery, Value, ExpressionWrapper
+from django.db.models.functions import Coalesce
+
 
 from core.models import TimeStampedModel
 
@@ -47,7 +52,29 @@ class PersonQuerySet(models.QuerySet):
         return self.filter(country_code=country_code)
 
     def with_total_spend(self):
-        raise NotImplementedError("To wymaga implementacji")
+        """adnotuj osoby lacznym wydatkiem wyliczonym z pozycji zamowien"""
+        from sales.models import OrderItem
+        spend_subquery = (
+            OrderItem.objects.filter(order__customer=OuterRef("pk"))
+            .values("order__customer")
+            .annotate(
+                total=Sum(
+                    ExpressionWrapper(
+                        F("quantity") * F("unit_price"),
+                        output_field=models.DecimalField(max_digits=14, decimal_places=2)
+                    )
+                )
+            ).values("total")[:1]
+        )
+
+        return self.annotate(
+            total_spend=Coalesce(
+                Subquery(spend_subquery),
+                Value(Decimal("0.00")),
+                output_field=models.DecimalField(max_digits=14, decimal_places=2)
+            )
+        )
+
 
 
 class Person(TimeStampedModel):

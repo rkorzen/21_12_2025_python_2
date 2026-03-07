@@ -15,6 +15,15 @@ class OrderQuerySet(models.QuerySet):
         return self.filter(country_code=country_code)
 
     def with_order_total(self):
+        """Adnotuj zamowienie suma wartosci pozycji (quantity * unit_price
+
+        self.annotate
+            order_total
+               Coalesce
+                 Sum
+                  ExpressionWrapper
+                   F x F
+        """
         raise NotImplementedError()
 
 
