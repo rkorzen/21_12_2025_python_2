@@ -80,7 +80,7 @@ class InventorySnapshot(TimeStampedModel):
     sku = models.CharField(max_length=40)
     captured_at = models.DateTimeField()
     available_qty = models.IntegerField(validators=[MinValueValidator(0)])  # to sie dzieje na poziomie aplikacji
-    reversed_qty = models.PositiveIntegerField(default=0)
+    reserved_qty = models.PositiveIntegerField(default=0)
     warehouse_code = models.CharField(max_length=32)
 
     class Meta:
@@ -94,8 +94,8 @@ class InventorySnapshot(TimeStampedModel):
                 name="inventory_available_non_negative"
             ),
             models.CheckConstraint(
-                condition=Q(reversed_qty__gte=Decimal(0)),  # to sie dzieje na poziomie bazy danych
-                name="inventory_reversed_non_negative"
+                condition=Q(reserved_qty__gte=Decimal(0)),  # to sie dzieje na poziomie bazy danych
+                name="inventory_reserved_non_negative"
             )
         ]
 
