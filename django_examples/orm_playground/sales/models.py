@@ -1,7 +1,8 @@
 from decimal import Decimal
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Sum, ExpressionWrapper, F, Value
+from django.db.models.functions import Coalesce
 
 from core.models import TimeStampedModel
 
@@ -24,8 +25,20 @@ class OrderQuerySet(models.QuerySet):
                   ExpressionWrapper
                    F x F
         """
-        raise NotImplementedError()
+        # subquery = OrderItem.objects.filter(order=OuterRef("pk"))
 
+        return self.annotate(
+            order_total = Coalesce(
+                Sum(
+                    ExpressionWrapper(
+                        F("items__quantity") * F("items__unit_price"),
+                        output_field=models.DecimalField(max_digits=14, decimal_places=2)
+                    )
+                ),
+                Value(Decimal("0.00")),
+                output_field=models.DecimalField(max_digits=14, decimal_places=2)
+            )
+        )
 
 class Order(TimeStampedModel):
 

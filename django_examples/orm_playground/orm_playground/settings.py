@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "sales.apps.SalesConfig",
     "events.apps.EventsConfig",
-    "reporting.apps.ReportingConfig"
+    "reporting.apps.ReportingConfig",
+    "invoices.apps.InvoicesConfig",
 ]
 
 MIDDLEWARE = [
