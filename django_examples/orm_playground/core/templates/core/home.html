@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ORM Playground - Raporty</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #4b5563;
+            --accent: #0f766e;
+            --border: #d1d5db;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #eef6ff 0%, var(--bg) 55%, #f8fafc 100%);
+            color: var(--text);
+        }
+
+        main {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 32px 16px 48px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+        }
+
+        .lead {
+            margin: 0 0 24px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .reports {
+            display: grid;
+            gap: 12px;
+        }
+
+        .report {
+            display: block;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .report:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 14px rgba(15, 118, 110, 0.14);
+        }
+
+        .report strong {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>ORM Playground</h1>
+    <p class="lead">
+        Ta strona zbiera przykladowe raporty oparte o zaawansowane zapytania Django ORM.
+        Kliknij raport, aby zobaczyc wersje HTML z presetami parametrow.
+    </p>
+
+    <section class="reports">
+        <a class="report" href="{% url 'top_products_page' %}">
+            <strong>Top products</strong><br>
+            Najlepiej sprzedajace sie produkty wedlug przychodu.<br>
+            <small>API: {% url 'top_products' %}</small>
+        </a>
+        <a class="report" href="{% url 'customers_ltv_page' %}">
+            <strong>Customers LTV</strong><br>
+            Lifetime value klientow i liczba ich zamowien.<br>
+            <small>API: {% url 'customers_ltv' %}</small>
+        </a>
+        <a class="report" href="{% url 'orders_with_late_payment_page' %}">
+            <strong>Orders with late payment</strong><br>
+            Zamowienia z opozniona platnoscia na podstawie dopasowania po external ref.<br>
+            <small>API: {% url 'orders_with_late_payment' %}</small>
+        </a>
+        <a class="report" href="{% url 'events_matched_by_email_page' %}">
+            <strong>Events matched by email</strong><br>
+            Logi zdarzen dopasowane do osob po adresie e-mail.<br>
+            <small>API: {% url 'events_matched_by_email' %}</small>
+        </a>
+        <a class="report" href="{% url 'n_plus_one_demo_page' %}">
+            <strong>N+1 demo</strong><br>
+            Porownanie podejscia naiwnego i zoptymalizowanego dla relacji.<br>
+            <small>API: {% url 'n_plus_one_demo' %}</small>
+        </a>
+        <a class="report" href="{% url 'window_rankings_page' %}">
+            <strong>Window rankings</strong><br>
+            Ranking i sumy narastajace z wykorzystaniem funkcji okna.<br>
+            <small>API: {% url 'window_rankings' %}</small>
+        </a>
+    </section>
+</main>
+</body>
+</html>

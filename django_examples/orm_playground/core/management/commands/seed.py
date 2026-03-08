@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import random
 from datetime import timedelta
 from decimal import Decimal, ROUND_HALF_UP

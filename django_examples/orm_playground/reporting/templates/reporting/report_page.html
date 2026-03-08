@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }} - Raport</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #475569;
+            --accent: #1d4ed8;
+            --border: #cbd5e1;
+        }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f0f4ff 0%, var(--bg) 40%, #f8fafc 100%);
+            color: var(--text);
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        h1 {
+            margin: 0 0 6px;
+        }
+        .lead {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+        .presets {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 0 0 16px;
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 6px 10px;
+            color: var(--accent);
+            background: #ffffff;
+            font-weight: 600;
+        }
+        .meta-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            margin-bottom: 16px;
+        }
+        .box {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            padding: 12px;
+        }
+        .box h2 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+        }
+        .kv {
+            margin: 0;
+        }
+        .kv div {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 8px;
+            font-size: 0.95rem;
+            margin: 4px 0;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 760px;
+        }
+        th, td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.92rem;
+        }
+        th {
+            background: #f1f5f9;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 0.86rem;
+            line-height: 1.35;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="topbar">
+        <a class="link" href="{% url 'reports_home' %}">Lista raportow HTML</a>
+        <a class="link" href="{% url 'home' %}">Strona glowna</a>
+    </div>
+
+    <h1>{{ title }}</h1>
+    <p class="lead">{{ description }}</p>
+
+    <div class="presets">
+        {% for preset in preset_links %}
+            <a class="btn" href="{{ preset.url }}">{{ preset.label }}</a>
+        {% endfor %}
+        <a class="btn" href="{{ json_url }}">Aktualny widok JSON</a>
+    </div>
+
+    <section class="meta-grid">
+        <article class="box">
+            <h2>Parametry</h2>
+            <div class="kv">
+                {% for key, value in params.items %}
+                    <div><strong>{{ key }}</strong><span>{{ value }}</span></div>
+                {% endfor %}
+            </div>
+        </article>
+        <article class="box">
+            <h2>Metryki</h2>
+            <div class="kv">
+                {% for key, value in metrics.items %}
+                    <div><strong>{{ key }}</strong><span>{{ value }}</span></div>
+                {% endfor %}
+            </div>
+        </article>
+    </section>
+
+    {% if has_tabular_results %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    {% for col in columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in table_rows %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <section class="meta-grid">
+            {% for item in scalar_items %}
+                <article class="box">
+                    <h2>{{ item.key }}</h2>
+                    <div>{{ item.value }}</div>
+                </article>
+            {% endfor %}
+            {% for item in nested_items %}
+                <article class="box">
+                    <h2>{{ item.key }}</h2>
+                    <pre>{{ item.json }}</pre>
+                </article>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <section class="box" style="margin-top:16px;">
+        <h2>Raw JSON</h2>
+        <pre>{{ results_json }}</pre>
+    </section>
+</main>
+</body>
+</html>

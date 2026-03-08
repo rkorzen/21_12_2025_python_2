@@ -1,3 +1,5 @@
-from django.db import models
+"""Brak własnych modeli trwałych.
 
-# Create your models here.
+Moduł `reporting` operuje na modelach domenowych z aplikacji:
+`people`, `sales`, `catalog` i `events`.
+"""
